@@ -1,0 +1,7 @@
+account_id = "<account_id>"
+username = "<username>"
+password = "<password>"
+role = "<role>"
+warehouse = "<warehouse>"
+database = "<database>"
+schema = "<schema>"
