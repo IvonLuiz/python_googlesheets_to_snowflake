@@ -25,7 +25,6 @@ class GoogleSheetsClient:
         }
 
         r = requests.post(url, data=data, headers=headers)
-        print(r.text)
 
         return r
 
