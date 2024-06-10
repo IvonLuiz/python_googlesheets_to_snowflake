@@ -29,9 +29,9 @@ class GoogleSheetsClient:
 
         return r
 
-    def connect_to_spreadsheet(self, sheet_id: str, range_name: str):
+    def connect_to_spreadsheet(self, spreadsheet_id: str, range_name: str):
         # Constructing the URL with the required parameters
-        url = f"https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values:batchGet"
+        url = f"https://sheets.googleapis.com/v4/spreadsheets/{spreadsheet_id}/values:batchGet"
         params = {
         # Select your sheet and range you wish to ingest
             "ranges": range_name,
@@ -42,14 +42,13 @@ class GoogleSheetsClient:
         response = requests.get(url, headers={"Authorization": "Bearer " + self.token}, params=params)
         # Handling the response
         if response.status_code == 200:
-
             return response
         else:
             raise Exception(f"API Request Failed: {response.status_code} {response.text}")
     
 
-    def get_sheet_data(self, sheet_id, range_name):
-        response = self.connect_to_spreadsheet(sheet_id, range_name)
+    def get_sheet_data(self, spreadsheet_id, range_name):
+        response = self.connect_to_spreadsheet(spreadsheet_id, range_name)
         json_data = response.json()
         values = json_data['valueRanges'][0]['values']
 
